@@ -35,7 +35,7 @@ namespace SimpleProjectSE2.Controllers
             userRegisterDTO.Username = userRegisterDTO.Username.ToLower();
 
             if (_authRepository.UserExists(userRegisterDTO.Username))
-                return BadRequest("Username already exists");
+                return BadRequest("Username already exists!");
 
             var studentToCreate = new Student
             {
