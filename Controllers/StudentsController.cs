@@ -23,6 +23,7 @@ namespace SimpleProjectSE2.Controllers
             _studentRepository = studentRepository;
         }
 
+        [Authorize(Roles = Role.LeaderOfGroup)]
         [HttpGet]
         public ActionResult<ICollection<StudentDto>> GetStudents()
         {

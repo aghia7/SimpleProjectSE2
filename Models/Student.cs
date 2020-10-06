@@ -30,5 +30,6 @@ namespace SimpleProjectSE2.Models
         public DateTime? Birthday { get; set; }
         public Guid GroupId { get; set; }
         public Group Group { get; set; }
+        public string Role { get; set; }
     }
 }
