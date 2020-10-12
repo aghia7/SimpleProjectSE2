@@ -15,6 +15,7 @@ using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using Microsoft.IdentityModel.Tokens;
 using SimpleProjectSE2.Data;
+using SimpleProjectSE2.Hubs;
 using SimpleProjectSE2.Repositories;
 using SimpleProjectSE2.Repositories.Interfaces;
 
@@ -39,6 +40,7 @@ namespace SimpleProjectSE2
                 opt.SerializerSettings.ReferenceLoopHandling =
                 Newtonsoft.Json.ReferenceLoopHandling.Ignore;
             });
+            services.AddSignalR();
             services.AddCors();
             services.AddScoped<IAuthRepository, AuthRepository>();
             services.AddScoped<IStudentRepository, StudentRepository>();
@@ -63,10 +65,10 @@ namespace SimpleProjectSE2
                 app.UseDeveloperExceptionPage();
             }
 
-            app.UseCors(x => x.AllowAnyOrigin().AllowAnyMethod().AllowAnyHeader());
+            app.UseCors(x => x.AllowAnyOrigin().AllowAnyHeader().AllowAnyMethod());
 
             // app.UseHttpsRedirection();
-
+            app.UseFileServer();
             app.UseRouting();
 
             app.UseAuthentication();
@@ -75,6 +77,7 @@ namespace SimpleProjectSE2
 
             app.UseEndpoints(endpoints =>
             {
+                endpoints.MapHub<ChatHub>("/chat");
                 endpoints.MapControllers();
             });
         }
