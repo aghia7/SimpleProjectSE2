@@ -17,15 +17,15 @@ namespace SimpleProjectSE2.Repositories
         {
             _context = context;
         }
-        public bool AddStudent(Student s)
+        public async Task<bool> AddStudent(Student s)
         {
             _context.StudentList.Add(s);
-            return _context.SaveChanges() > 0;
+            return (await _context.SaveChangesAsync()) > 0;
         }
 
-        public IEnumerable<Student> GetStudents()
+        public async Task<IEnumerable<Student>> GetStudents()
         {
-            return _context.StudentList.Include(x => x.Group).OrderBy(x => x.Name);
+            return await _context.StudentList.Include(x => x.Group).ToListAsync();
         }
     }
 }

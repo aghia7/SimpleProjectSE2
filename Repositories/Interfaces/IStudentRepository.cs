@@ -8,7 +8,7 @@ namespace SimpleProjectSE2.Repositories.Interfaces
 {
     public interface IStudentRepository
     {
-        IEnumerable<Student> GetStudents();
-        bool AddStudent(Student s);
+        Task<IEnumerable<Student>> GetStudents();
+        Task<bool> AddStudent(Student s);
     }
 }

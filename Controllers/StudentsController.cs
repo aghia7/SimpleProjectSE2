@@ -25,9 +25,9 @@ namespace SimpleProjectSE2.Controllers
 
         [Authorize(Roles = Role.LeaderOfGroup)]
         [HttpGet]
-        public ActionResult<ICollection<StudentDto>> GetStudents()
+        public async Task<ActionResult<ICollection<StudentDto>>> GetStudents()
         {
-            IEnumerable<Student> innerStudents = _studentRepository.GetStudents();
+            IEnumerable<Student> innerStudents = await _studentRepository.GetStudents();
             ICollection<StudentDto> students = new LinkedList<StudentDto>();
 
             foreach (Student s in innerStudents)
@@ -44,10 +44,10 @@ namespace SimpleProjectSE2.Controllers
         }
 
         [HttpPost]
-        public ActionResult AddStudent(StudentDto s)
+        public async Task<ActionResult> AddStudent(StudentDto s)
         {
             Student st = new Student(s);
-            if (_studentRepository.AddStudent(st))
+            if (await _studentRepository.AddStudent(st))
             {
                 return Ok("A new user was added successfully!");
             }
