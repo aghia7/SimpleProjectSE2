@@ -27,7 +27,7 @@ namespace SimpleProjectSE2.Models
         public string Username { get; set; }
         public byte[] PasswordHash { get; set; }
         public byte[] PasswordSalt { get; set; }
-        public DateTime? Birthday { get; set; }
+        public DateTime Birthday { get; set; }
         public Guid GroupId { get; set; }
         public Group Group { get; set; }
         public string Role { get; set; }

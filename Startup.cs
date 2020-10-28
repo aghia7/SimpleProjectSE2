@@ -40,6 +40,7 @@ namespace SimpleProjectSE2
                 opt.SerializerSettings.ReferenceLoopHandling =
                 Newtonsoft.Json.ReferenceLoopHandling.Ignore;
             });
+
             services.AddSignalR();
             services.AddCors();
             services.AddScoped<IAuthRepository, AuthRepository>();
