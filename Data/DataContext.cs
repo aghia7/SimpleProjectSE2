@@ -15,5 +15,6 @@ namespace SimpleProjectSE2.Data
 
         public DbSet<Student> StudentList { get; set; }
         public DbSet<Group> Groups { get; set; }
+        public DbSet<Message> Messages { get; set; }
     }
 }
